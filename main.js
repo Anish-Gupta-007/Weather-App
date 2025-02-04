@@ -3,10 +3,8 @@ const DashBoard = document.querySelector(".additional-info");
 const unitSelect = document.getElementById("unit-select");
 const mainBG = document.body;
 
-// Default unit is Celsius (metric)
 let selectedUnit = "metric";
 
-// Weather Elements
 const CityElement = document.querySelector(".city");
 const TempElement = document.querySelector(".tem");
 const WindElement = document.querySelector(".wind-speed");
@@ -16,13 +14,8 @@ const DescriptionElement = document.querySelector(".description-text");
 const DescriptionIconElement = document.querySelector(".description i");
 const DateElement = document.querySelector(".date");
 
-// Set current date
 DateElement.textContent = new Date().toDateString();
 
-/**
- * Fetches weather data from OpenWeather API
- * @param {string} cityName - Name of the city
- */
 async function fetchWeatherData(cityName) {
   try {
     const response = await fetch(
@@ -42,10 +35,6 @@ async function fetchWeatherData(cityName) {
   }
 }
 
-/**
- * Updates the UI with weather data
- * @param {object} data - Weather data object
- */
 function updateWeatherData(data) {
   const tempUnit = selectedUnit === "metric" ? "°C" : "°F";
   const windUnit = selectedUnit === "metric" ? "Km/H" : "mph";
@@ -61,12 +50,7 @@ function updateWeatherData(data) {
   DescriptionIconElement.innerHTML = `<i class="material-icons">${weatherIconName}</i>`;
 }
 
-/**
- * Changes the theme color based on temperature
- * @param {number} temp - Temperature value
- */
 function updateTheme(temp) {
-  // Remove all previous theme classes
   DashBoard.classList.remove(
     "blue",
     "green",
@@ -109,11 +93,6 @@ function updateTheme(temp) {
   }
 }
 
-/**
- * Gets the corresponding weather icon name
- * @param {string} weatherCondition - Main weather condition (e.g., "Clear", "Clouds")
- * @returns {string} Material icon name
- */
 function getWeatherIconName(weatherCondition) {
   const iconMap = {
     Clear: "wb_sunny",
@@ -130,9 +109,6 @@ function getWeatherIconName(weatherCondition) {
   return iconMap[weatherCondition] || "help";
 }
 
-/**
- * Fetches user's location and retrieves weather data
- */
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -141,10 +117,6 @@ function getLocation() {
   }
 }
 
-/**
- * Handles geolocation success and fetches weather data
- * @param {object} position - Position object with latitude & longitude
- */
 function showPosition(position) {
   const { latitude, longitude } = position.coords;
   fetch(
@@ -157,20 +129,15 @@ function showPosition(position) {
     .catch((error) => console.error("Error getting location:", error));
 }
 
-/**
- * Handles geolocation errors
- */
 function showError() {
   CityElement.textContent = "Error getting location.";
 }
 
-// Toggle between Celsius and Fahrenheit
 unitSelect.addEventListener("change", function () {
   selectedUnit = unitSelect.value;
   fetchWeatherData(CityElement.textContent);
 });
 
-// Handle city search
 document.querySelector(".search-form").addEventListener("submit", function (e) {
   e.preventDefault();
   const cityName = document.querySelector(".search-input").value.trim();
@@ -180,5 +147,4 @@ document.querySelector(".search-form").addEventListener("submit", function (e) {
   }
 });
 
-// Fetch weather for user's location on page load
 getLocation();
