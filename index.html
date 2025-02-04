@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/main.js" defer></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+      integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <div class="weather-app">
+      <form class="search-form" action="">
+        <input class="search-input" type="text" placeholder="Enter City Name" />
+        <button class="search-icon" type="submit">
+          <i class="material-icons">search</i>
+        </button>
+        <div class="unit-container">
+          <select id="unit-select">
+            <option value="metric">°C</option>
+            <option value="imperial">°F</option>
+          </select>
+        </div>
+      </form>
+      <div class="city-date-sec">
+        <h2 class="city">Delhi</h2>
+        <p class="date">7-jab-2024</p>
+      </div>
+      <div class="temprature-info">
+        <div class="description">
+          <i class="material-icons">sunny</i>
+          <span class="description-text">sunny</span>
+        </div>
+        <div class="tem">20°</div>
+      </div>
+      <div class="additional-info">
+        <div class="wind-info">
+          <i class="material-icons">air</i>
+          <div>
+            <h3 class="wind-speed">4km/h</h3>
+            <p class="wind-lable">wind</p>
+          </div>
+        </div>
+        <div class="humadity-info">
+          <i class="material-icons">water_drop</i>
+          <div>
+            <h3 class="humadity">45%</h3>
+            <p class="humadity-lable">humadity</p>
+          </div>
+        </div>
+        <div class="visiblity-info">
+          <i class="material-icons">visibility</i>
+          <div>
+            <h3 class="visiblity-distance">4km/h</h3>
+            <p class="visiblity-lable">visiblity</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
